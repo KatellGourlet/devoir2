@@ -1,0 +1,29 @@
+version: "3"
+services:
+  manager:
+    build: 
+      context: .
+      dockerfile: "Dockerfile.txt"
+    depends_on:
+      - db
+    environment:
+      - POSTGRES_USER=katell
+      - POSTGRES_PASSWORD=katellpass
+      - POSTGRES_DB=db:5432
+      - CSV_FILENAME=data.csv
+
+  db:     
+    image: "postgres"
+    hostname: "db"
+    ports: 
+    - "5432:5432"
+    environment:
+      - POSTGRES_USER=katell
+      - POSTGRES_PASSWORD=katellpass
+      - POSTGRES_DB=db:5432
+      - CSV_FILENAME=data.csv
+
+    
+
+
+
